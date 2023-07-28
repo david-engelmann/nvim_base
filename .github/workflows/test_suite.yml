@@ -49,7 +49,7 @@ jobs:
         run: docker ps -a
 
       - name: Mount to container and test install
-        run: docker run --pull=never --rm -v ${HOME}:/home/david-engelmann -it vim-dev-env nvim --headless "+Lazy! sync" +qa
-      
-      - name: Mount to container and test write to file 
-        run: docker run --pull=never --rm -v ${HOME}:/home/david-engelmann -it vim-dev-env nvim --headless "+Lazy! sync" +qa && nvim -c "3 s/^/hi/" -c "wq" file.txt
+        run: docker run --pull=never --rm -v ${HOME}:/home/david-engelmann vim-dev-env nvim --headless "+Lazy! sync" +qa
+
+      - name: Mount to container and test write to file
+        run: docker run --pull=never --rm -v ${HOME}:/home/david-engelmann vim-dev-env nvim --headless "+Lazy! sync" +qa && nvim -c "1 s/^/hi/" -c "wq" file.txt
