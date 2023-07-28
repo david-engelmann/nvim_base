@@ -1,0 +1,35 @@
+version: "3.8"
+
+networks:
+    vim-net:
+        name: vim-net
+        driver: bridge
+        ipam:
+            driver: default
+
+
+services:
+    vim-dev-env:
+        restart: always
+        image: vim-dev-env
+        container_name: vim-dev-env
+        user: root
+        env_file:
+            - .env
+        networks:
+            - vim-net
+        #ports:
+        #    - "8008:8008"
+        volumes:
+            - "/var/run/docker.sock:/var/run/docker.sock"
+            - "./config:/home/david-engelmann/.config/nvim"
+        command: ["sh", "-c", "whoami && sleep infinity"]
+        privileged: true
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+            args:
+                USER: "${USER:-vim}"
+                VIM: "${VIM:-/home/david-engelmann/.config/nvim}"
+                VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
+
