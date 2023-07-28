@@ -35,8 +35,7 @@ ENV VIMRUNTIME $VIMRUNTIME
 RUN git clone https://github.com/neovim/neovim.git \
     && cd neovim \
     && git checkout stable \
-    && make CMAKE_BUILD_TYPE=RelWithDebInfo \
-    #CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$VIM" \
+    && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$VIMRUNTIME" \
     && make install \
     && cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
 
@@ -68,7 +67,7 @@ ENV VIM $VIM
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
 
-ENV PATH="$VIM/bin:$PATH"
+ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 
 #RUN adduser $USER && \
 #    usermod -aG sudo $USER; \
