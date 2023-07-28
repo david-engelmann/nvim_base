@@ -39,3 +39,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Docker
+        run: sh docker/scripts/docker_install.sh
+
+      - name: Docker Compose up
+        run: docker compose -f docker-compose.yml up -d
+
+      - name: Check running container
+        run: docker ps -a
+
+      - name: Mount to container and test install
+        run: docker run --pull=never --rm -v ${pwd}:/home/david-engelmann -it vim-dev-env nvim --headless "+Lazy! sync" +qa
+      
+      - name: Mount to container and test write to file 
+        run: docker run --pull=never --rm -v ${pwd}:/home/david-engelmann -it vim-dev-env nvim --headless "+Lazy! sync" +qa && nvim -c "3 s/^/hi/" -c "wq" file.txt
