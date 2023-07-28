@@ -53,6 +53,9 @@ jobs:
 
       - name: Mount to container and test install
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
+      
+      - name: Run checkhealth
+        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
 
       - name: Mount to container and test write to file
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
