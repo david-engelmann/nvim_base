@@ -49,7 +49,7 @@ jobs:
         run: docker ps -a
 
       - name: Mount to container and test install
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} vim-dev-env nvim --headless "+Lazy! sync" +qa
+        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
 
       - name: Mount to container and test write to file
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
+        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
