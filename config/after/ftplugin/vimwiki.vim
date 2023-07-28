@@ -19,8 +19,8 @@ function! s:set_wiki_link() abort
     let modifiers .= ':r'
   endif
 
-  let file_name = david#standard_file_name(expand('%' . modifiers))
-  let wiki_path = david#standard_file_name(g:vimwiki_path)
+  let file_name = tj#standard_file_name(expand('%' . modifiers))
+  let wiki_path = tj#standard_file_name(g:vimwiki_path)
 
   let subbed_path = substitute(file_name, '^' . wiki_path, '', '')
 

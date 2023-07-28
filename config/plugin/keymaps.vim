@@ -20,8 +20,8 @@ inoremap <C-CR> <C-O>O
 " inoremap <describe> asdf my mapping here other stuff<CR>
 "       \ <description> asdf
 
-nnoremap j <cmd>call david#jump_direction('j')<CR>
-nnoremap k <cmd>call david#jump_direction('k')<CR>
+nnoremap j <cmd>call tj#jump_direction('j')<CR>
+nnoremap k <cmd>call tj#jump_direction('k')<CR>
 
 " nnoremap <silent> j <cmd>call <SID>jump_dir('j')<CR>
 " nnoremap <silent> k <cmd>call <SID>jump_dir('k')<CR>
@@ -50,7 +50,7 @@ vnoremap <leader>x :<C-w>exe join(getline("'<","'>"),'<Bar>')<CR>
 nnoremap <leader><leader>v :w<CR>:Vader %<CR>
 
 " Execute this file
-nnoremap <leader><leader>x :call david#save_and_exec()<CR>
+nnoremap <leader><leader>x :call tj#save_and_exec()<CR>
 
 " Remove whitespace
 nnoremap <leader>sws :%s/\s\+$//<CR>
