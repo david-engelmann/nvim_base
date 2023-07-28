@@ -13,7 +13,7 @@ services:
         restart: always
         image: vim-dev-env
         container_name: vim-dev-env
-        user: root
+        user: david-engelmann
         env_file:
             - .env
         networks:
@@ -29,7 +29,7 @@ services:
             context: .
             dockerfile: docker/Dockerfile
             args:
-                USER: "${USER:-vim}"
+                USER: "${USER:-david-engelmann}"
                 VIM: "${VIM:-/home/david-engelmann/.config/nvim}"
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
 

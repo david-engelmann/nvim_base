@@ -56,7 +56,7 @@ ENV LANGUAGE en_US:en
 ENV TZ=America/New_York
 
 # perm vim user
-ARG USER=vim
+ARG USER=david-engelmann
 ENV USER $USER
 RUN useradd -m -s /bin/bash $USER
 
@@ -74,8 +74,8 @@ ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 # COPY OVER CONFIG
 COPY --chown=$USER config /home/$USER/.config/nvim
 
-USER ${USER:-vim}
+USER ${USER:-david-engelmann}
 WORKDIR /home/$USER
 
-
+RUN whoami
 RUN nvim --headless "+Lazy! sync" +qa

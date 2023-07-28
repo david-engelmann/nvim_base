@@ -21,5 +21,5 @@ VIMRUNTIME=/usr/share/nvim/runtime
 
 Run with your code with the following command
 ```shell
-$ docker run --pull=never --rm -v ${pwd}:/home/david-engelmann -it vim-dev-env
+$ docker run --pull=never --rm -v /path/to/config:${VIM} -v ${pwd}:${pwd} --user ${USER} vim-dev-env
 ```
