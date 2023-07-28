@@ -23,7 +23,7 @@ services:
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
             - "./config:/home/david-engelmann/.config/nvim"
-        command: ["sh", "-c", "whoami && sleep infinity"]
+        command: ["sh", "-c", "sleep infinity"]
         privileged: true
         build:
             context: .
