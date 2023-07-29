@@ -6,7 +6,8 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     python3 python3-pip tzdata libtool libtool-bin autoconf automake g++ \
     pkg-config zip unzip apt-transport-https ca-certificates git ssh luarocks \
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
-    libtree-sitter-dev tmux python3 python3-dev xdg-utils yarn rustc cargo nodejs npm \
+    libtree-sitter-dev tmux python3 python3-dev xdg-utils yarn rustc cargo \
+    nodejs npm \
     golang-go \
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
@@ -86,7 +87,7 @@ ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
 ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
-RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/scripts/k3s/install.sh | bash -s -- <args>
+RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/scripts/k3s/install.sh | bash
 
 #RUN adduser $USER && \
 #    usermod -aG sudo $USER; \
