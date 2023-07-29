@@ -41,6 +41,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Checkout code for Source Graph
+        uses: actions/checkout@v3
+        with:
+            repository: david-engelmann/deploy-sourcegraph-docker
+            path: deploy-sourcegraph-docker
+
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
 
