@@ -52,9 +52,6 @@ RUN echo "set -g mouse on" > /etc/tmux.conf \
 
 RUN pip3 install pynvim
 
-RUN echo "\n\n" > $VIM/init.vim
-
-RUN ln -s /usr/bin/nvim /usr/bin/vim
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
@@ -91,6 +88,10 @@ COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
 
 USER ${USER:-david-engelmann}
 WORKDIR /home/$USER
+
+RUN echo "\n\n" > $VIM/init.vim
+
+RUN ln -s /usr/bin/nvim /usr/bin/vim
 
 RUN whoami
 RUN nvim --headless "+Lazy! sync" +qa
