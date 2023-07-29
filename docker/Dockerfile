@@ -105,8 +105,6 @@ ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
 ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
-RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/scripts/k3s/install.sh | bash -s -- -d /sg_data
-
 WORKDIR /home/$USER
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
