@@ -98,6 +98,8 @@ RUN sh julia_install.sh
 
 RUN ls -a /home/$USER/.config/nvim
 
+RUN mkdir /sg_data && chmod 0700 /sg_data
+
 USER ${USER:-david-engelmann}
 ARG SRC_ACCESS_TOKEN=my-token
 ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
@@ -105,8 +107,7 @@ ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
 ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
-RUN mkdir -m 700 /mnt/data/sdb
-RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/scripts/k3s/install.sh | bash -s -- -d /mnt/data/sdb
+RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/scripts/k3s/install.sh | bash -s -- -d /sg_data
 
 WORKDIR /home/$USER
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
