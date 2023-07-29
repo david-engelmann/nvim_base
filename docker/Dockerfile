@@ -7,7 +7,7 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     pkg-config zip unzip apt-transport-https ca-certificates git ssh luarocks \
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
     libtree-sitter-dev tmux python3 python3-dev xdg-utils rustc cargo \
-    nodejs npm clang \
+    nodejs npm clang mercurial \
     golang-go \
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
