@@ -43,6 +43,9 @@ RUN git clone https://github.com/neovim/neovim.git \
 RUN git clone https://github.com/mauke/unibilium.git \
     && cd unibilium && make && cd .. && rm -r unibilium
 
+RUN echo "set -g mouse on" > /etc/tmux.conf \
+    && mkdir -p /run/tmux
+
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
 
@@ -60,6 +63,7 @@ ENV TZ=America/New_York
 ARG USER=david-engelmann
 ENV USER $USER
 RUN useradd -m -s /bin/bash $USER
+RUN echo $USER "ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 ARG VIM=/home/$USER/.config/nvim
 ENV VIM $VIM
