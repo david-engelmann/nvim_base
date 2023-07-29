@@ -35,13 +35,14 @@ ENV VIMRUNTIME $VIMRUNTIME
 RUN git clone https://github.com/neovim/neovim.git \
     && cd neovim \
     && git checkout stable \
-    && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_EXTRA_FLAGS="-DCMAKE_INSTALL_PREFIX=$VIMRUNTIME" \
-    && make install \
+    && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$VIMRUNTIME \
+    #&& make install
+    #\
     && cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
 
 # unibilium
-RUN git clone https://github.com/mauke/unibilium.git \
-    && cd unibilium && make && cd .. && rm -r unibilium
+#RUN git clone https://github.com/mauke/unibilium.git \
+#    && cd unibilium && make && cd .. && rm -r unibilium
 
 RUN echo "set -g mouse on" > /etc/tmux.conf \
     && mkdir -p /run/tmux
@@ -77,7 +78,7 @@ ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 #    usermod -aG sudo $USER; \
 
 # COPY OVER CONFIG
-COPY --chown=$USER config /home/$USER/.config/nvim
+COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
 
 USER ${USER:-david-engelmann}
 WORKDIR /home/$USER
