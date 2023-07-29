@@ -58,7 +58,8 @@ RUN npm install -g typescript
 RUN npm install -g neovim
 RUN npm install -g @fsouza/prettierd
 
-RUN cargo install tree-sitter-cli
+RUN cargo install --git https://github.com/tree-sitter/tree-sitter --tag v0.20.
+
 
 
 FROM ubuntu:22.04
