@@ -95,7 +95,7 @@ RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/
 # COPY OVER CONFIG
 COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
 COPY docker/scripts/julia_install.sh .
-RUN sh docker/scripts/julia_install.sh
+RUN sh julia_install.sh
 
 RUN ls -a /home/$USER/.config/nvim
 
