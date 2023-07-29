@@ -8,6 +8,16 @@ networks:
             driver: default
 
 services:
+#    sourcegraph:
+#        restart: always
+#        container_name: sourcegraph
+#        image: sourcegraph
+#        user: david-engelmann
+#        env_file:
+#            - deploy-sourcegraph-docker/.env
+#        networks:
+#            - sourcegraph
+
     vim-dev-env:
         restart: always
         image: vim-dev-env
