@@ -50,7 +50,11 @@ RUN git clone https://github.com/neovim/neovim.git \
 RUN echo "set -g mouse on" > /etc/tmux.conf \
     && mkdir -p /run/tmux
 
-RUN pip3 install neovim
+RUN pip3 install pynvim
+
+RUN echo "\n\n" > $VIM/init.vim
+
+RUN ln -s /usr/bin/nvim /usr/bin/vim
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
