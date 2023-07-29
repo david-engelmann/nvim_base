@@ -52,6 +52,7 @@ RUN echo "set -g mouse on" > /etc/tmux.conf \
 RUN pip3 install pynvim
 
 RUN npm install -g typescript
+RUN npm install -g neovim
 
 
 FROM ubuntu:22.04
@@ -92,3 +93,4 @@ USER ${USER:-david-engelmann}
 WORKDIR /home/$USER
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
+RUN nvim --headless "TSUpdate" +qa
