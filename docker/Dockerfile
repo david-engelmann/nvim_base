@@ -91,7 +91,4 @@ WORKDIR /home/$USER
 
 RUN echo "\n\n" > $VIM/init.vim
 
-RUN ln -s /usr/bin/nvim /usr/bin/vim
-
-RUN whoami
 RUN nvim --headless "+Lazy! sync" +qa
