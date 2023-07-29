@@ -105,6 +105,7 @@ ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
 ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
+RUN mkdir -m 700 /mnt/data/sdb
 RUN curl -sfL https://raw.githubusercontent.com/sourcegraph/deploy/main/install/scripts/k3s/install.sh | bash -s -- -d /mnt/data/sdb
 
 WORKDIR /home/$USER
