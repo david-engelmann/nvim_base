@@ -89,6 +89,4 @@ COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
 USER ${USER:-david-engelmann}
 WORKDIR /home/$USER
 
-RUN echo "\n\n" > $VIM/init.vim
-
 RUN nvim --headless "+Lazy! sync" +qa
