@@ -7,6 +7,7 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     pkg-config zip unzip apt-transport-https ca-certificates git ssh luarocks \
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
     libtree-sitter-dev tmux python3 python3-dev xdg-utils yarn rustc cargo node \
+    golang-go \
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
 
@@ -32,8 +33,6 @@ ENV VIM $VIM
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
 
-RUN pwd
-
 RUN git clone https://github.com/neovim/neovim.git \
     && cd neovim \
     && git checkout stable \
@@ -51,6 +50,8 @@ RUN echo "set -g mouse on" > /etc/tmux.conf \
     && mkdir -p /run/tmux
 
 RUN pip3 install pynvim
+
+RUN npm install -g typescript
 
 
 FROM ubuntu:22.04
