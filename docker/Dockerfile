@@ -78,7 +78,6 @@ ENV VIM $VIM
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
 
-ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 
 #RUN adduser $USER && \
 #    usermod -aG sudo $USER; \
@@ -86,7 +85,9 @@ ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 # COPY OVER CONFIG
 COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
 
+RUN ls -a /home/$USER/.config/nvim
+
 USER ${USER:-david-engelmann}
 WORKDIR /home/$USER
-
+ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
