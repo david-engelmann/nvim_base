@@ -6,11 +6,13 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     python3 python3-pip tzdata libtool libtool-bin autoconf automake gcc g++ \
     pkg-config zip unzip apt-transport-https ca-certificates git ssh luarocks \
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
-    libtree-sitter-dev tmux python3 python3-dev xdg-utils yarn rustc cargo \
+    libtree-sitter-dev tmux python3 python3-dev xdg-utils rustc cargo \
     nodejs npm clang \
     golang-go \
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
+
+RUN npm install -g yarn
 
 #RUN mkdir /root/.ssh && chmod 0700 /root/.ssh
 #RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
