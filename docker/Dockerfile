@@ -39,9 +39,9 @@ RUN git clone https://github.com/neovim/neovim.git \
     && git checkout stable \
     && make CMAKE_BUILD_TYPE=RelWithDebInfo \
     #CMAKE_INSTALL_PREFIX=$VIMRUNTIME \
-    && make install
+    #&& make install
     #\
-    #&& cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
+    && cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
 
 # unibilium
 #RUN git clone https://github.com/mauke/unibilium.git \
