@@ -32,13 +32,16 @@ ENV VIM $VIM
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
 
+RUN pwd
+
 RUN git clone https://github.com/neovim/neovim.git \
     && cd neovim \
     && git checkout stable \
-    && make CMAKE_BUILD_TYPE=RelWithDebInfo CMAKE_INSTALL_PREFIX=$VIMRUNTIME \
-    #&& make install
+    && make CMAKE_BUILD_TYPE=RelWithDebInfo \
+    #CMAKE_INSTALL_PREFIX=$VIMRUNTIME \
+    && make install
     #\
-    && cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
+    #&& cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
 
 # unibilium
 #RUN git clone https://github.com/mauke/unibilium.git \
@@ -46,6 +49,8 @@ RUN git clone https://github.com/neovim/neovim.git \
 
 RUN echo "set -g mouse on" > /etc/tmux.conf \
     && mkdir -p /run/tmux
+
+RUN pip3 install neovim
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
