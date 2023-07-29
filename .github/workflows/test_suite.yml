@@ -31,6 +31,8 @@ jobs:
         USER: "david-engelmann"
         VIM: "/home/david-engelmann/.config/nvim"
         VIMRUNTIME: "/usr/share/nvim/runtime"
+        SRC_ACCESS_TOKEN: "my-token"
+        SRC_ENDPOINT: "https://sourcegraph.example.com"
     container:
         image: ubuntu:22.04
         options: --user root
@@ -53,7 +55,7 @@ jobs:
 
       - name: Mount to container and test install
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
-      
+
       - name: Run checkhealth
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
 

@@ -32,4 +32,6 @@ services:
                 USER: "${USER:-david-engelmann}"
                 VIM: "${VIM:-/home/david-engelmann/.config/nvim}"
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
+                SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
+                SRC_ENDPOINT: "${SRC_ENDPOINT:-https://sourcegraph.example.com}"
 

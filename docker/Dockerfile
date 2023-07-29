@@ -80,6 +80,11 @@ ENV VIM $VIM
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
 
+ARG SRC_ACCESS_TOKEN=my-token
+ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
+
+ARG SRC_ENDPOINT=https://sourcegraph.example.com
+ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 #RUN adduser $USER && \
 #    usermod -aG sudo $USER; \
