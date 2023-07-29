@@ -47,6 +47,9 @@ jobs:
       - name: Setup Docker
         run: sh docker/scripts/docker_install.sh
 
+      - name: Install Julia
+        run: sh docker/scripts/julia_install.sh
+
       - name: Docker Compose up
         run: docker compose -f docker-compose.yml up -d
 
