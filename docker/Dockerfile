@@ -3,7 +3,7 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
   && apt-get -y install --no-install-recommends \
     #fonts-powerline ninja-build gettext cmake unzip curl libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev libtree-sitter-dev apt-transport-https ca-certificates git \
     fonts-powerline ninja-build gettext cmake unzip curl fzf ripgrep tree xclip \
-    python3 python3-pip tzdata libtool libtool-bin autoconf automake g++ \
+    python3 python3-pip tzdata libtool libtool-bin autoconf automake gcc g++ \
     pkg-config zip unzip apt-transport-https ca-certificates git ssh luarocks \
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
     libtree-sitter-dev tmux python3 python3-dev xdg-utils yarn rustc cargo \
