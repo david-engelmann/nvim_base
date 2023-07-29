@@ -7,7 +7,6 @@ networks:
         ipam:
             driver: default
 
-
 services:
     vim-dev-env:
         restart: always
@@ -23,6 +22,7 @@ services:
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
             - "./config:/home/david-engelmann/.config/nvim"
+            - "sdb_data:/mnt/data/sdb"
         command: ["sh", "-c", "sleep infinity"]
         privileged: true
         build:
@@ -35,3 +35,6 @@ services:
                 SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
                 SRC_ENDPOINT: "${SRC_ENDPOINT:-https://sourcegraph.example.com}"
 
+volumes:
+    sdb_data:
+        driver: local
