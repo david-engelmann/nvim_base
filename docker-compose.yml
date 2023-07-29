@@ -20,8 +20,7 @@ services:
         #ports:
         #    - "8008:8008"
         devices:
-            - "/sg_data:/sg_data
-
+            - "/sg_data:/sg_data"
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
             - "./config:/home/david-engelmann/.config/nvim"

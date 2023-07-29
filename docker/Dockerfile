@@ -98,8 +98,6 @@ RUN sh julia_install.sh
 
 RUN ls -a /home/$USER/.config/nvim
 
-RUN mkdir /sg_data && chmod 0700 /sg_data
-
 USER ${USER:-david-engelmann}
 ARG SRC_ACCESS_TOKEN=my-token
 ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
