@@ -57,10 +57,7 @@ RUN pip3 install pynvim black isort
 RUN npm install -g typescript
 RUN npm install -g neovim
 RUN npm install -g @fsouza/prettierd
-
-RUN cargo install --git https://github.com/tree-sitter/tree-sitter --tag v0.20.
-
-
+RUN npm install -g tree-sitter-cli
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
@@ -68,7 +65,6 @@ COPY --from=neovim-builder / /
 #RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractive \
 #  && apt-get -y install --no-install-recommends \
 #    fonts-powerline fzf ripgrep tree xclip python3 python3-pip tzdata
-
 
 # Set image locale.
 ENV LANG en_US.UTF-8
