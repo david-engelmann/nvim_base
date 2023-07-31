@@ -59,6 +59,9 @@ jobs:
       - name: Create Shared Network
         run: docker network create sourcegraph
 
+      - name: Confirm Caddyfile pres
+        run: cat deploy-sourcegraph-docker/cady/builtins/http.Caddyfile
+
       - name: Start Sourcegraph
         run: docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
 
