@@ -95,7 +95,8 @@ ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 # COPY OVER CONFIG
 COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
-COPY --chown=$USER --chmod=0644 deploy-sourcegraph-docker /home/$USER
+COPY --chown=$USER --chmod=0644 . /home/$USER
+
 COPY docker/scripts/julia_install.sh .
 RUN sh julia_install.sh
 
