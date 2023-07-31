@@ -59,6 +59,15 @@ jobs:
       - name: Create Shared Network
         run: docker network create sourcegraph
 
+      - name: Caddyfile finder
+        run: ls -la deploy-sourcegraph-docker
+
+      - name: Caddyfile finder1
+        run: ls -la deploy-sourcegraph-docker/cady
+
+      - name: Caddyfile finder2
+        run: ls -la deploy-sourcegraph-docker/cady/builtins
+
       - name: Confirm Caddyfile pres
         run: cat deploy-sourcegraph-docker/cady/builtins/http.Caddyfile
 
