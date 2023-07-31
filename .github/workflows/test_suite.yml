@@ -63,13 +63,13 @@ jobs:
         run: ls -la deploy-sourcegraph-docker
 
       - name: Caddyfile finder1
-        run: ls -la deploy-sourcegraph-docker/cady
+        run: ls -la deploy-sourcegraph-docker/caddy
 
       - name: Caddyfile finder2
-        run: ls -la deploy-sourcegraph-docker/cady/builtins
+        run: ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
-        run: cat deploy-sourcegraph-docker/cady/builtins/http.Caddyfile
+        run: cat deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
 
       - name: Start Sourcegraph
         run: docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
