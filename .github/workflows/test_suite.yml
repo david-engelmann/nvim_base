@@ -56,6 +56,9 @@ jobs:
       - name: Install Julia
         run: sh docker/scripts/julia_install.sh
 
+      - name: Create Shared Network
+        run: docker network create -d overlay --attachable sourcegraph
+
       - name: Start Sourcegraph
         run: docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
 
