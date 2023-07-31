@@ -56,9 +56,6 @@ jobs:
       - name: Install Julia
         run: sh docker/scripts/julia_install.sh
 
-      - name: where and what is there
-        run: pwd && ls -la && ls -la deploy-sourcegraph-docker && ls -la deploy-sourcegraph-docker/docker-compose && sleep 50
-
       - name: Start Sourcegraph
         run: docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
 
