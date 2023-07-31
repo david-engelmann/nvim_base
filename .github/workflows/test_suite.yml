@@ -74,6 +74,9 @@ jobs:
       - name: Chmod
         run: chmod -R a+x deploy-sourcegraph-docker
 
+      - name: Test Caddyfile pres
+        run: test -f deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
+
       - name: Start Sourcegraph
         run: pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
 
