@@ -60,7 +60,7 @@ jobs:
         run: pwd && ls -la && ls -la deploy-sourcegraph-docker && ls -la deploy-sourcegraph-docker/docker-compose && sleep 50
 
       - name: Start Sourcegraph
-        run: docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yml up -d
+        run: docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
 
       - name: Docker Compose up
         run: docker compose -f docker-compose.yml up -d
