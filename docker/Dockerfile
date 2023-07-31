@@ -16,6 +16,7 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --de
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y caddy
+RUN caddy
 
 RUN npm install -g yarn
 
