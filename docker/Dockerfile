@@ -8,9 +8,14 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
     libtree-sitter-dev tmux python3 python3-dev xdg-utils rustc cargo \
     nodejs npm clang mercurial \
-    golang-go \
+    golang-go debian-keyring debian-archive-keyring \
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
+
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
+RUN apt-get update
+RUN apt-get install caddy
 
 RUN npm install -g yarn
 
