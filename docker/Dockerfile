@@ -95,6 +95,7 @@ ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 # COPY OVER CONFIG
 COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
+COPY --chown=$USER --chmod=0644 deploy-sourcegraph-docker /home/$USER
 COPY docker/scripts/julia_install.sh .
 RUN sh julia_install.sh
 
@@ -108,6 +109,7 @@ ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 WORKDIR /home/$USER
+RUN pwd && ls -la
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa
