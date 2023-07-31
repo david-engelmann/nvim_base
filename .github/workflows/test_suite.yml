@@ -72,7 +72,7 @@ jobs:
         run: cat deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
 
       - name: Start Sourcegraph
-        run: pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && test -f ./deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile && docker compose -f docker-compose/docker-compose.yaml up -d
+        run: pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
 
       - name: Docker Compose up
         run: docker compose -f docker-compose.yml up -d
