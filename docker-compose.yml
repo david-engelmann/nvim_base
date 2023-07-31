@@ -34,6 +34,7 @@ services:
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
             - "./config:/home/david-engelmann/.config/nvim"
+            - "./deploy-sourcegraph-docker:/home/david-engelmann/deploy-sourcegraph-docker"
             # Local Volume Style
             - "sg_data:/sg_data"
         command: ["sh", "-c", "sleep infinity"]
