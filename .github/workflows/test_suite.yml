@@ -75,22 +75,22 @@ jobs:
         run: useradd -m -s /bin/bash $USER
 
       - name: Setup Docker
-        run: cd nvim_base && sh docker/scripts/docker_install.sh
+        run: cd nvim_base && pwd && sh docker/scripts/docker_install.sh
 
       - name: Install Julia
-        run: cd nvim_base && sh docker/scripts/julia_install.sh
+        run: cd nvim_base && pwd && sh docker/scripts/julia_install.sh
 
       - name: Create Shared Network
         run: docker network create sourcegraph
 
       - name: Caddyfile finder
-        run: cd nvim_base && ls -la deploy-sourcegraph-docker
+        run: cd nvim_base && pwd && ls -la deploy-sourcegraph-docker
 
       - name: Caddyfile finder1
-        run: cd nvim_base && ls -la deploy-sourcegraph-docker/caddy
+        run: cd nvim_base && pwd && ls -la deploy-sourcegraph-docker/caddy
 
       - name: Caddyfile finder2
-        run: cd nvim_base && ls -la deploy-sourcegraph-docker/caddy/builtins
+        run: cd nvim_base && pwd && ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
         run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
