@@ -116,8 +116,8 @@ ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 WORKDIR /home/$USER
-RUN chmod -R a+x /home/$USER
-RUN chmod -R a+x /home/$USER/deploy-sourcegraph-docker
+RUN chmod -R +x /home/$USER
+RUN chmod -R +x /home/$USER/deploy-sourcegraph-docker
 RUN pwd && ls -la
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa

@@ -93,7 +93,10 @@ jobs:
         run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
       - name: Chmod
-        run: cd nvim_base && chmod -R a+x deploy-sourcegraph-docker
+        run: cd nvim_base && chmod -R +x deploy-sourcegraph-docker
+
+      - name: Caddyfile specificly
+        run: cd nvim_base && chmod +x deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
       - name: Test Caddyfile pres
         run: cd nvim_base && test -f deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
