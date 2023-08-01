@@ -51,6 +51,15 @@ jobs:
             repository: david-engelmann/deploy-sourcegraph-docker
             path: nvim_base/deploy-sourcegraph-docker
 
+      - name: Check Dir and List Files
+        run: pwd && ls -la
+
+      - name: Change into dir
+        run: cd nvim_base
+
+      - name: Check Dir and List Files
+        run: pwd && ls -la
+
       - name: Change into dir
         run: cd nvim_base
 
