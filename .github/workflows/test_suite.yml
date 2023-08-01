@@ -43,12 +43,17 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+            path: ../../../home/david-engelmann
 
       - name: Checkout code for Source Graph
         uses: actions/checkout@v3
         with:
             repository: david-engelmann/deploy-sourcegraph-docker
-            path: deploy-sourcegraph-docker
+            path: ../../../home/david-engelmann/deploy-sourcegraph-docker
+
+      - name: Change Dirs
+        run: cd /home/david-engelmann
 
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
