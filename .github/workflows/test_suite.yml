@@ -101,11 +101,11 @@ jobs:
       - name: Test Caddyfile pres
         run: cd nvim_base && test -f deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
-      - name: Start Sourcegraph
-        run: cd nvim_base && pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
-
       - name: Docker Compose up
         run: cd nvim_base && docker compose -f docker-compose.yml up -d
+
+      - name: Start Sourcegraph
+        run: cd nvim_base && docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
 
       - name: Check running container
         run: docker ps -a
