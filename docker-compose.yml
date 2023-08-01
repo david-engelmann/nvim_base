@@ -22,7 +22,7 @@ services:
         restart: always
         image: vim-dev-env
         container_name: vim-dev-env
-        user: root
+        user: david-engelmann
         env_file:
             - .env
         networks:
