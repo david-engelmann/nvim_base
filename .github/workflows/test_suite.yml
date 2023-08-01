@@ -39,58 +39,76 @@ jobs:
 
     steps:
       - name: Checkout code
+        working-directory: /home/david-engelmann
         uses: actions/checkout@v3
 
       - name: Checkout code for Source Graph
+        working-directory: /home/david-engelmann
         uses: actions/checkout@v3
         with:
             repository: david-engelmann/deploy-sourcegraph-docker
             path: deploy-sourcegraph-docker
 
       - name: Perm users
+        working-directory: /home/david-engelmann
         run: useradd -m -s /bin/bash $USER
 
       - name: Setup Docker
+        working-directory: /home/david-engelmann
         run: sh docker/scripts/docker_install.sh
 
       - name: Install Julia
+        working-directory: /home/david-engelmann
         run: sh docker/scripts/julia_install.sh
 
       - name: Create Shared Network
+        working-directory: /home/david-engelmann
         run: docker network create sourcegraph
 
       - name: Caddyfile finder
+        working-directory: /home/david-engelmann
         run: ls -la deploy-sourcegraph-docker
 
       - name: Caddyfile finder1
+        working-directory: /home/david-engelmann
         run: ls -la deploy-sourcegraph-docker/caddy
 
       - name: Caddyfile finder2
+        working-directory: /home/david-engelmann
         run: ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
+        working-directory: /home/david-engelmann
         run: cat deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
 
       - name: Chmod
+        working-directory: /home/david-engelmann
         run: chmod -R a+x deploy-sourcegraph-docker
 
       - name: Test Caddyfile pres
+        working-directory: /home/david-engelmann
         run: test -f deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
 
       - name: Start Sourcegraph
+        working-directory: /home/david-engelmann
         run: pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
 
       - name: Docker Compose up
+        working-directory: /home/david-engelmann
         run: docker compose -f docker-compose.yml up -d
 
       - name: Check running container
+        working-directory: /home/david-engelmann
         run: docker ps -a
 
       - name: Mount to container and test install
+        working-directory: /home/david-engelmann
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
 
       - name: Run checkhealth
+        working-directory: /home/david-engelmann
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
 
       - name: Mount to container and test write to file
+        working-directory: /home/david-engelmann
         run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
