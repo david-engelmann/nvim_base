@@ -36,7 +36,7 @@ RUN luarocks install lua-term
 RUN luarocks install penlight
 RUN luarocks install mediator_lua
 
-ARG VIM=/home/$USER/.config/nvim
+ARG VIM=$HOME/.config/nvim
 ENV VIM $VIM
 
 ARG VIMRUNTIME=/usr/share/nvim/runtime
@@ -84,7 +84,10 @@ RUN useradd -m -s /bin/bash $USER
 RUN echo $USER "ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers
 RUN cat /etc/sudoers
 
-ARG VIM=/home/$USER/.config/nvim
+ARG HOME=/home/$USER
+ENV HOME $HOME
+
+ARG VIM=$HOME/.config/nvim
 ENV VIM $VIM
 
 ARG VIMRUNTIME=/usr/share/nvim/runtime
@@ -100,8 +103,8 @@ ENV SRC_ENDPOINT $SRC_ENDPOINT
 #    usermod -aG sudo $USER; \
 
 # COPY OVER CONFIG
-COPY --chown=$USER --chmod=0644 config* /home/$USER/.config/nvim/
-COPY --chown=$USER --chmod=0644 . /home/$USER
+COPY --chown=$USER --chmod=0644 config* $HOME/.config/nvim/
+COPY --chown=$USER --chmod=0644 . $HOME
 
 COPY docker/scripts/julia_install.sh .
 RUN sh julia_install.sh
@@ -115,9 +118,11 @@ ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
 ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
-WORKDIR /home/$USER
-RUN chmod -R +x /home/$USER
-RUN chmod -R +x /home/$USER/deploy-sourcegraph-docker
+WORKDIR $HOME
+RUN chmod -R +x $HOME
+RUN chmod -R +x $HOME/nvim_base/deploy-sourcegraph-docker
+RUN mkdir $HOME/nvim_base/deploy-sourcegraph-docker
+RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
 RUN pwd && ls -la
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa

@@ -111,7 +111,7 @@ jobs:
         run: cd nvim_base && docker compose -f docker-compose.yml up -d
 
       - name: Start Sourcegraph
-        run: cd nvim_base && docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
+        run: cd nvim_base && USER_ID=$(id -u) GROUP_ID=$(id -g) docker compose -f deploy-sourcegraph-docker/docker-compose/docker-compose.yaml up -d
 
       - name: Check running container
         run: docker ps -a
