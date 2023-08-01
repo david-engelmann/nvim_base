@@ -52,6 +52,10 @@ jobs:
             repository: david-engelmann/deploy-sourcegraph-docker
             path: nvim_base/deploy-sourcegraph-docker
 
+      - name: Set Env Vars
+        run: |
+            echo "HOME=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
       - name: Check Dir and List Files
         run: pwd && ls -la
 
