@@ -33,6 +33,7 @@ jobs:
         VIMRUNTIME: "/usr/share/nvim/runtime"
         SRC_ACCESS_TOKEN: "my-token"
         SRC_ENDPOINT: "https://sourcegraph.example.com"
+        HOME: "$GITHUB_WORKSPACE"
     container:
         image: ubuntu:22.04
         options: --user root
