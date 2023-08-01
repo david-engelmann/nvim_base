@@ -41,7 +41,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-            path: nvim
+            path: nvim_base
         #with:
         #    path: ../../../home/david-engelmann
 
@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v3
         with:
             repository: david-engelmann/deploy-sourcegraph-docker
-            path: nvim/deploy-sourcegraph-docker
+            path: nvim_base/deploy-sourcegraph-docker
 
       - name: Change into dir
         run: cd nvim
