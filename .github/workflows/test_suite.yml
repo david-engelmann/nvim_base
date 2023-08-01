@@ -54,6 +54,9 @@ jobs:
       - name: Change into dir
         run: cd nvim_base
 
+      - name: Check Dir and List Files
+        run: pwd && ls -la
+
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
 
