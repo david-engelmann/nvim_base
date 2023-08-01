@@ -16,6 +16,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+    GITHUB_WORKSPACE: "/home/david-engelmann"
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -33,7 +36,6 @@ jobs:
         VIMRUNTIME: "/usr/share/nvim/runtime"
         SRC_ACCESS_TOKEN: "my-token"
         SRC_ENDPOINT: "https://sourcegraph.example.com"
-        GITHUB_WORKSPACE: "/home/david-engelmann"
     container:
         image: ubuntu:22.04
         options: --user root
