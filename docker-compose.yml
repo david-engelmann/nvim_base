@@ -33,8 +33,8 @@ services:
         #    - "/sg_data:/sg_data"
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
-            - "./config:/home/david-engelmann/.config/nvim"
-            - "./deploy-sourcegraph-docker:/home/david-engelmann/deploy-sourcegraph-docker"
+            - "./config:${HOME}/.config/nvim"
+            - "./deploy-sourcegraph-docker:${HOME}/nvim_base/deploy-sourcegraph-docker"
             # Local Volume Style
             - "sg_data:/sg_data"
         command: ["sh", "-c", "sleep infinity"]
@@ -44,7 +44,7 @@ services:
             dockerfile: docker/Dockerfile
             args:
                 USER: "${USER:-david-engelmann}"
-                VIM: "${VIM:-/home/david-engelmann/.config/nvim}"
+                VIM: "${VIM:-$HOME/.config/nvim}"
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
                 SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
                 SRC_ENDPOINT: "${SRC_ENDPOINT:-https://sourcegraph.example.com}"

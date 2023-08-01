@@ -16,9 +16,6 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-    GITHUB_WORKSPACE: "/home/david-engelmann"
-
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -32,7 +29,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
         USER: "david-engelmann"
-        VIM: "/home/david-engelmann/.config/nvim"
+        VIM: "~/.config/nvim"
         VIMRUNTIME: "/usr/share/nvim/runtime"
         SRC_ACCESS_TOKEN: "my-token"
         SRC_ENDPOINT: "https://sourcegraph.example.com"
@@ -44,16 +41,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-            path: ../../../home/david-engelmann
+            path: nvim
+        #with:
+        #    path: ../../../home/david-engelmann
 
       - name: Checkout code for Source Graph
         uses: actions/checkout@v3
         with:
             repository: david-engelmann/deploy-sourcegraph-docker
-            path: ../../../home/david-engelmann/deploy-sourcegraph-docker
+            path: nvim/deploy-sourcegraph-docker
 
-      - name: Change Dirs
-        run: cd /home/david-engelmann
+      - name: Change into dir
+        run: cd nvim
 
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
@@ -77,13 +76,13 @@ jobs:
         run: ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
-        run: cat deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
+        run: cat deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
       - name: Chmod
         run: chmod -R a+x deploy-sourcegraph-docker
 
       - name: Test Caddyfile pres
-        run: test -f deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
+        run: test -f deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
       - name: Start Sourcegraph
         run: pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
