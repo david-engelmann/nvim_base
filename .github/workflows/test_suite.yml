@@ -70,46 +70,46 @@ jobs:
         run: useradd -m -s /bin/bash $USER
 
       - name: Setup Docker
-        run: sh docker/scripts/docker_install.sh
+        run: cd nvim_base && sh docker/scripts/docker_install.sh
 
       - name: Install Julia
-        run: sh docker/scripts/julia_install.sh
+        run: cd nvim_base && sh docker/scripts/julia_install.sh
 
       - name: Create Shared Network
         run: docker network create sourcegraph
 
       - name: Caddyfile finder
-        run: ls -la deploy-sourcegraph-docker
+        run: cd nvim_base && ls -la deploy-sourcegraph-docker
 
       - name: Caddyfile finder1
-        run: ls -la deploy-sourcegraph-docker/caddy
+        run: cd nvim_base && ls -la deploy-sourcegraph-docker/caddy
 
       - name: Caddyfile finder2
-        run: ls -la deploy-sourcegraph-docker/caddy/builtins
+        run: cd nvim_base && ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
-        run: cat deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
+        run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
       - name: Chmod
-        run: chmod -R a+x deploy-sourcegraph-docker
+        run: cd nvim_base && chmod -R a+x deploy-sourcegraph-docker
 
       - name: Test Caddyfile pres
-        run: test -f deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
+        run: cd nvim_base && test -f deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
 
       - name: Start Sourcegraph
-        run: pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
+        run: cd nvim_base && pwd && cd deploy-sourcegraph-docker && ls -la caddy && ls -la caddy/builtins && caddy && docker compose -f docker-compose/docker-compose.yaml up -d
 
       - name: Docker Compose up
-        run: docker compose -f docker-compose.yml up -d
+        run: cd nvim_base && docker compose -f docker-compose.yml up -d
 
       - name: Check running container
         run: docker ps -a
 
       - name: Mount to container and test install
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
+        run: cd nvim_base && docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
 
       - name: Run checkhealth
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
+        run: cd nvim_base && docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
 
       - name: Mount to container and test write to file
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
+        run: cd nvim_base && docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
