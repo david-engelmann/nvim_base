@@ -52,7 +52,7 @@ jobs:
             path: nvim_base/deploy-sourcegraph-docker
 
       - name: Change into dir
-        run: cd nvim
+        run: cd nvim_base
 
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
