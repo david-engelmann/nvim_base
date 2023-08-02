@@ -119,9 +119,9 @@ ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 WORKDIR $HOME
-RUN mkdir -p $HOME/nvim_base/deploy-sourcegraph-docker
-RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
-RUN pwd && ls -la
+#RUN mkdir -p $HOME/nvim_base/deploy-sourcegraph-docker
+#RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
+#RUN pwd && ls -la
 COPY . .
 RUN git clone https://github.com/david-engelmann/deploy-sourcegraph-docker.git
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
