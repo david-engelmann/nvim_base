@@ -1,4 +1,5 @@
 FROM ubuntu:22.04 as neovim-builder
+RUN echo "FUCK CADDY"
 RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractive \
   && apt-get -y install --no-install-recommends \
     #fonts-powerline ninja-build gettext cmake unzip curl libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev libtree-sitter-dev apt-transport-https ca-certificates git \
