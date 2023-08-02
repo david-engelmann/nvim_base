@@ -90,7 +90,7 @@ jobs:
         run: cd nvim_base && pwd && ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
-        run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/Caddyfile
+        run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile
 
       - name: Chmod
         run: cd nvim_base && chmod -R +x deploy-sourcegraph-docker
