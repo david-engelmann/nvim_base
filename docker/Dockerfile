@@ -119,7 +119,7 @@ ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 WORKDIR $HOME
-RUN mkdir $HOME/nvim_base/deploy-sourcegraph-docker
+RUN mkdir -p $HOME/nvim_base/deploy-sourcegraph-docker
 RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
 RUN pwd && ls -la
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
