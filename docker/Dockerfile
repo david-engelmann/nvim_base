@@ -117,8 +117,7 @@ ENV SRC_ACCESS_TOKEN $SRC_ACCESS_TOKEN
 
 ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
-RUN chmod -R +x $HOME
-RUN chmod -R +x $HOME/nvim_base/deploy-sourcegraph-docker
+
 WORKDIR $HOME
 RUN mkdir $HOME/nvim_base/deploy-sourcegraph-docker
 RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
