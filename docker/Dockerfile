@@ -123,7 +123,8 @@ WORKDIR $HOME
 #RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
 #RUN pwd && ls -la
 COPY . .
-RUN git clone https://github.com/david-engelmann/deploy-sourcegraph-docker.git
+# Clone l8r sk8r
+#RUN git clone https://github.com/david-engelmann/deploy-sourcegraph-docker.git
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa
