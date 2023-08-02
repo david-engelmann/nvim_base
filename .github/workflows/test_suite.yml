@@ -90,22 +90,22 @@ jobs:
         run: cd nvim_base && pwd && ls -la deploy-sourcegraph-docker/caddy/builtins
 
       - name: Confirm Caddyfile pres
-        run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
+        run: cd nvim_base && cat deploy-sourcegraph-docker/caddy/builtins/Caddyfile
 
       - name: Chmod
         run: cd nvim_base && chmod -R +x deploy-sourcegraph-docker
 
       - name: Caddyfile specificly
-        run: cd nvim_base && chmod +x deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile
+        run: cd nvim_base && chmod +x deploy-sourcegraph-docker/caddy/builtins/Caddyfile
 
       - name: Test Caddyfile pres
-        run: cd nvim_base && test -f deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile && echo true || echo false
+        run: cd nvim_base && test -f deploy-sourcegraph-docker/caddy/builtins/Caddyfile && echo true || echo false
 
       - name: Test Caddyfile -r
-        run: cd nvim_base && test -r deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile && echo true || echo false
+        run: cd nvim_base && test -r deploy-sourcegraph-docker/caddy/builtins/Caddyfile && echo true || echo false
 
       - name: Test Caddyfile -x
-        run: cd nvim_base && test -x deploy-sourcegraph-docker/caddy/builtins/fuck.Caddyfile && echo true || echo false
+        run: cd nvim_base && test -x deploy-sourcegraph-docker/caddy/builtins/Caddyfile && echo true || echo false
 
       - name: Docker Compose up
         run: cd nvim_base && docker compose -f docker-compose.yml up -d
