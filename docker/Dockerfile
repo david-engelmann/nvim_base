@@ -123,6 +123,7 @@ WORKDIR $HOME
 RUN mkdir -p $HOME/nvim_base/deploy-sourcegraph-docker
 RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
 RUN pwd && ls -la
+COPY . .
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa
