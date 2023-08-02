@@ -17,7 +17,6 @@ RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --de
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | tee /etc/apt/sources.list.d/caddy-stable.list
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y caddy
-RUN caddy
 
 RUN npm install -g yarn
 
@@ -124,6 +123,7 @@ RUN mkdir -p $HOME/nvim_base/deploy-sourcegraph-docker
 RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
 RUN pwd && ls -la
 COPY . .
+RUN git clone https://github.com/david-engelmann/deploy-sourcegraph-docker.git
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa
