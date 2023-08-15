@@ -128,3 +128,7 @@ COPY . .
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa
+
+COPY docker/scripts/docker_install.sh .
+#RUN chmod +x docker_install.sh
+RUN bash docker_install.sh
