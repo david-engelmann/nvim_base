@@ -29,7 +29,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
         USER: "david-engelmann"
-        VIM: "$HOME/.config/nvim"
+        VIM: "/home/david-engelmann/.config/nvim"
         VIMRUNTIME: "/usr/share/nvim/runtime"
         SRC_ACCESS_TOKEN: "my-token"
         SRC_ENDPOINT: "https://sourcegraph.example.com"
