@@ -102,7 +102,7 @@ jobs:
         run: docker compose -f docker-compose.yml up -d
 
       - name: Start Sourcegraph
-        run: cd deploy-sourcegraph-docker && pwd && ls -la && docker compose -f docker-compose/docker-compose.yaml up -d
+        run: sh docker/scripts/run-docker-compose.sh
 
       - name: Check running container
         run: docker ps -a
