@@ -56,6 +56,7 @@ jobs:
       - name: Set Env Vars
         run: |
             echo "HOME=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+            echo "CADDYFILE_PATH=${GITHUB_WORKSPACE}/deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile" >> $GITHUB_ENV
 
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
