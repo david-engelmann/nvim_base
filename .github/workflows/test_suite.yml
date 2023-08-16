@@ -101,6 +101,9 @@ jobs:
       - name: Docker Compose up
         run: docker compose -f docker-compose.yml up -d
 
+      - name: Test Dockerfile.caddy -x
+        run: pwd && test -x deploy-sourcegraph-docker/caddy/Dockerfile.caddy && echo true || echo false
+
       - name: Start Sourcegraph
         run: sh docker/scripts/run-docker-compose.sh
 
