@@ -56,7 +56,8 @@ jobs:
       - name: Set Env Vars
         run: |
             echo "HOME=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-            echo "CADDYFILE_PATH=${GITHUB_WORKSPACE}/deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile" >> $GITHUB_ENV
+            #echo "CADDYFILE_PATH=${GITHUB_WORKSPACE}/deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile" >> $GITHUB_ENV
+            echo "CADDYFILE_PATH=/tmp/http.Caddyfile" >> $GITHUB_ENV
 
       - name: Perm users
         run: useradd -m -s /bin/bash $USER
@@ -93,6 +94,9 @@ jobs:
 
       - name: Test http.Caddyfile -x
         run: test -x deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile && echo true || echo false
+
+      - name: Copy Caddyfile to Known Location
+        run: cp deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile /tmp/http.Caddyfile
 
       - name: Docker Compose up
         run: docker compose -f docker-compose.yml up -d
