@@ -257,6 +257,10 @@ local servers = {
   yamlls = true,
   ocamllsp = {
     -- cmd = { "~/git/ocaml-lsp/_build/default/ocaml-lsp-server/bin/main.exe" },
+    settings = {
+      codelens = { enable = true },
+    },
+
     get_language_id = function(_, ftype)
       return ftype
     end,
@@ -347,7 +351,7 @@ local servers = {
 
   -- nix language server
   nil_ls = true,
-
+  eslint = true,
   tsserver = {
     init_options = ts_util.init_options,
     cmd = { "typescript-language-server", "--stdio" },
