@@ -83,7 +83,8 @@
         "/home/david-engelmann/plugins/ocaml.nvim/lua",
         "/home/david-engelmann/.local/share/nvim/lazy/nvim-dap-virtual-text/lua",
         "/home/david-engelmann/.local/share/nvim/lazy/fidget.nvim/lua",
-        "/home/david-engelmann/git/config_manager/xdg_config/nvim/lua"
+        "/home/david-engelmann/.config/nvim/lua",
+        "/home/david-engelmann/.config/nvim",
     ],
     "workspace.checkThirdParty": false
 }
