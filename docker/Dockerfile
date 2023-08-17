@@ -42,9 +42,6 @@ RUN git clone https://github.com/neovim/neovim.git \
     && cd neovim \
     && git checkout stable \
     && make CMAKE_BUILD_TYPE=RelWithDebInfo \
-    #CMAKE_INSTALL_PREFIX=$VIMRUNTIME \
-    #&& make install
-    #\
     && cd build && cpack -G DEB && dpkg -i nvim-linux64.deb
 
 # unibilium

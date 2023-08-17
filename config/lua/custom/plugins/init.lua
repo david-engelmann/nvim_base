@@ -25,6 +25,7 @@ return {
   { dir = "~/plugins/sponge-bob.nvim" },
   { "tjdevries/colorbuddy.nvim", dev = false },
   { "tjdevries/gruvbuddy.nvim", dev = false },
+  { "tjdevries/ocaml.nvim" },
   { "tjdevries/cyclist.vim" },
   { "tjdevries/express_line.nvim", dev = false },
   { "tjdevries/overlength.vim" },
