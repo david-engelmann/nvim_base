@@ -45,7 +45,7 @@ services:
             args:
                 USER: "${USER:-david-engelmann}"
                 VIM: "${VIM:-$HOME/neovim}"
-                VIM_INSTALL_PATH: "${VIM_INSTALL_PATH:-$HOME/.config/nvim"
+                VIM_INSTALL_PATH: "${VIM_INSTALL_PATH:-$HOME/.config/nvim}"
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
                 SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
                 SRC_ENDPOINT: "${SRC_ENDPOINT:-https://sourcegraph.example.com}"
