@@ -24,6 +24,7 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.runtimepath:prepend(lazypath)
+vim.opt.runtimepath:prepend("/home/david-engelmann/.config/nvim")
 
 require("lazy").setup("custom.plugins", {
   dev = {
@@ -46,4 +47,5 @@ require("lazy").setup("custom.plugins", {
       task = "📌",
     },
   },
+
 })

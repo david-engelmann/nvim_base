@@ -32,8 +32,11 @@ RUN luarocks install lua-term
 RUN luarocks install penlight
 RUN luarocks install mediator_lua
 
-ARG VIM=$HOME/.config/nvim
+ARG VIM=$PWD/neovim
 ENV VIM $VIM
+
+ARG VIM_INSTALL_PATH=$HOME/.config/nvim
+ENV VIM_INSTALL_PATH $VIM_INSTALL_PATH
 
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
@@ -76,8 +79,11 @@ RUN cat /etc/sudoers
 ARG HOME=/home/$USER
 ENV HOME $HOME
 
-ARG VIM=$HOME/.config/nvim
+ARG VIM=$PWD/neovim
 ENV VIM $VIM
+
+ARG VIM_INSTALL_PATH=$HOME/.config/nvim
+ENV VIM_INSTALL_PATH $VIM_INSTALL_PATH
 
 ARG VIMRUNTIME=/usr/share/nvim/runtime
 ENV VIMRUNTIME $VIMRUNTIME
@@ -109,6 +115,6 @@ ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 WORKDIR $HOME
 COPY . .
-ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
+ENV PATH="$VIM_INSTALL_PATH/bin:$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa

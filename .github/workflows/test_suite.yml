@@ -29,7 +29,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
         USER: "david-engelmann"
-        VIM: "/home/david-engelmann/.config/nvim"
+        VIM: "/home/david-engelmann/neovim"
+        VIM_INSTALL_PATH: "/home/david-engelmann/.config/nvim"
         VIMRUNTIME: "/usr/share/nvim/runtime"
         SRC_ACCESS_TOKEN: "my-token"
         SRC_ENDPOINT: "https://sourcegraph.example.com"
@@ -56,7 +57,6 @@ jobs:
       - name: Set Env Vars
         run: |
             echo "HOME=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-            #echo "CADDYFILE_PATH=${GITHUB_WORKSPACE}/deploy-sourcegraph-docker/caddy/builtins/http.Caddyfile" >> $GITHUB_ENV
             echo "CADDYFILE_PATH=/tmp/http.Caddyfile" >> $GITHUB_ENV
 
       - name: Perm users
@@ -111,13 +111,13 @@ jobs:
         run: docker ps -a
 
       - name: Mount to container and test install
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
+        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM_INSTALL_PATH} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "+Lazy! sync" +qa
 
       - name: Run checkhealth
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
+        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM_INSTALL_PATH} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless "healthcheck" +qa
 
       - name: Mount to container and test write to file
-        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
+        run: docker run --pull=never --rm -v ${GITHUB_WORKSPACE}/config:${VIM_INSTALL_PATH} -v ${HOME}:${HOME} --user ${USER} vim-dev-env nvim --headless -c "1 s/^/hi/" -c "wq" file.txt
 
       - name: Upload file.text
         uses: actions/upload-artifact@v2
