@@ -1,5 +1,4 @@
 FROM ubuntu:22.04 as neovim-builder
-RUN echo "FUCK CADDY"
 RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractive \
   && apt-get -y install --no-install-recommends \
     #fonts-powerline ninja-build gettext cmake unzip curl libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev libtree-sitter-dev apt-transport-https ca-certificates git \
@@ -19,9 +18,6 @@ RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y caddy
 
 RUN npm install -g yarn
-
-#RUN mkdir /root/.ssh && chmod 0700 /root/.ssh
-#RUN ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
 RUN mkdir -m 700 /root/.ssh; \
   touch /root/.ssh/known_hosts; \
@@ -67,10 +63,6 @@ RUN npm install -g tree-sitter-cli
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
-
-#RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractive \
-#  && apt-get -y install --no-install-recommends \
-#    fonts-powerline fzf ripgrep tree xclip python3 python3-pip tzdata
 
 # Set image locale.
 ENV LANG en_US.UTF-8
@@ -119,16 +111,7 @@ ARG SRC_ENDPOINT=https://sourcegraph.example.com
 ENV SRC_ENDPOINT $SRC_ENDPOINT
 
 WORKDIR $HOME
-#RUN mkdir -p $HOME/nvim_base/deploy-sourcegraph-docker
-#RUN chown $USER:$USER $HOME/nvim_base/deploy-sourcegraph-docker
-#RUN pwd && ls -la
 COPY . .
-# Clone l8r sk8r
-#RUN git clone https://github.com/david-engelmann/deploy-sourcegraph-docker.git
 ENV PATH="$VIMRUNTIME/bin:$VIM/bin:$PATH"
 RUN nvim --headless "+Lazy! sync" +qa
 RUN nvim --headless "TSUpdate" +qa
-
-#COPY docker/scripts/docker_install.sh .
-#RUN chmod +x docker_install.sh
-#RUN bash docker_install.sh
