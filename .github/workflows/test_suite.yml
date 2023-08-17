@@ -123,4 +123,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: file.txt
-            path: ${HOME}/file.txt
+            path: $GITHUB_WORKSPACE/file.txt
