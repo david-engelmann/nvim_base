@@ -26,6 +26,11 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 vim.opt.runtimepath:prepend("/home/david-engelmann/.config/nvim")
 
+vim.cmd("highlight Normal guibg=none")
+vim.cmd("highlight NonText guibg=none")
+vim.cmd("highlight Normal ctermbg=none")
+vim.cmd("highlight NonText ctermbg=none")
+
 require("lazy").setup("custom.plugins", {
   dev = {
     -- directory where you store your local plugin projects
@@ -47,5 +52,4 @@ require("lazy").setup("custom.plugins", {
       task = "📌",
     },
   },
-
 })

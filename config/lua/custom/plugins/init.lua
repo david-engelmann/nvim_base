@@ -18,14 +18,13 @@ return {
   { dir = "~/plugins/streamer-tools" },
   { dir = "~/plugins/ocaml.nvim", config = true },
   { dir = "~/plugins/train.nvim" },
-  
   { dir = "~/plugins/monkey.nvim" },
   { dir = "~/plugins/vim9jit" },
   { dir = "~/plugins/sg.nvim" },
   { dir = "~/plugins/sponge-bob.nvim" },
   { "tjdevries/colorbuddy.nvim", dev = false },
-  { "tjdevries/gruvbuddy.nvim", dev = false },
   { "tjdevries/ocaml.nvim" },
+  { "tjdevries/gruvbuddy.nvim", dev = false },
   { "tjdevries/cyclist.vim" },
   { "tjdevries/express_line.nvim", dev = false },
   { "tjdevries/overlength.vim" },
@@ -51,6 +50,26 @@ return {
 
   "mkitt/tabline.vim",
   "monaqa/dial.nvim",
+
+  -- make transparent
+  {"xiyaowong/transparent.nvim",
+   config = function()
+    require("transparent").setup({
+      groups = { -- table: default groups
+        'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+        'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+        'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+        'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+      },
+      extra_groups = {"NormalFloat", "NvimTreeNormal", "TelescopeNormal"}, -- table: additional groups that should be cleared
+      exclude_groups = {"NotifyBackground"}, -- table: groups you don't want to clear
+    })
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    lazy = false,
+  },
 
   {
     "luukvbaal/statuscol.nvim",

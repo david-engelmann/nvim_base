@@ -1,12 +1,19 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    tag = '0.1.2',
+    lazy = false,
+    dependencies = {
+      {"nvim-lua/plenary.nvim"},
+      {"BurntSushi/ripgrep"},
+      {"sharkdp/fd"},
+    },
     priority = 100,
     config = function()
       require "david.telescope.setup"
       require "david.telescope.keys"
     end,
-    dev = true,
+    --dev = true,
   },
   "nvim-telescope/telescope-file-browser.nvim",
   "nvim-telescope/telescope-hop.nvim",
