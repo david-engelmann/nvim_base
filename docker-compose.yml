@@ -48,7 +48,7 @@ services:
                 VIM_INSTALL_PATH: "${VIM_INSTALL_PATH:-$HOME/.config/nvim}"
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
                 SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
-                SRC_ENDPOINT: "${SRC_ENDPOINT:-https://sourcegraph.example.com}"
+                SRC_ENDPOINT: "${SRC_ENDPOINT:-http://localhost}"
 
 volumes:
     sg_data:
