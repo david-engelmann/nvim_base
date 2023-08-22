@@ -33,7 +33,7 @@ jobs:
         VIM_INSTALL_PATH: "/home/david-engelmann/.config/nvim"
         VIMRUNTIME: "/usr/share/nvim/runtime"
         SRC_ACCESS_TOKEN: "my-token"
-        SRC_ENDPOINT: "https://sourcegraph.example.com"
+        SRC_ENDPOINT: "http://localhost"
         HOME: "${GITHUB_WORKSPACE}"
     container:
         image: ubuntu:22.04
