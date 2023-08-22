@@ -1,35 +1,55 @@
 version: "3.8"
 
 networks:
-    vim-net:
-        name: vim-net
+    sourcegraph:
+        name: sourcegraph
         driver: bridge
         ipam:
             driver: default
 
-
 services:
+#    sourcegraph:
+#        restart: always
+#        container_name: sourcegraph
+#        image: sourcegraph
+#        user: david-engelmann
+#        env_file:
+#            - deploy-sourcegraph-docker/.env
+#        networks:
+#            - sourcegraph
+
     vim-dev-env:
         restart: always
         image: vim-dev-env
         container_name: vim-dev-env
-        user: root
+        user: david-engelmann
         env_file:
             - .env
         networks:
-            - vim-net
+            - sourcegraph
         #ports:
         #    - "8008:8008"
+        #devices:
+        #    - "/sg_data:/sg_data"
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock"
-            - "./config:/home/david-engelmann/.config/nvim"
-        command: ["sh", "-c", "whoami && sleep infinity"]
+            - "./config:${HOME}/.config/nvim"
+            #- "./deploy-sourcegraph-docker:${HOME}/nvim_base/deploy-sourcegraph-docker"
+            # Local Volume Style
+            - "sg_data:/sg_data"
+        command: ["sh", "-c", "sleep infinity"]
         privileged: true
         build:
             context: .
             dockerfile: docker/Dockerfile
             args:
-                USER: "${USER:-vim}"
-                VIM: "${VIM:-/home/david-engelmann/.config/nvim}"
+                USER: "${USER:-david-engelmann}"
+                VIM: "${VIM:-$HOME/neovim}"
+                VIM_INSTALL_PATH: "${VIM_INSTALL_PATH:-$HOME/.config/nvim}"
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
+                SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
+                SRC_ENDPOINT: "${SRC_ENDPOINT:-https://sourcegraph.example.com}"
 
+volumes:
+    sg_data:
+        driver: local

@@ -1,5 +1,5 @@
 return {
-  { "nvim-treesitter/nvim-treesitter" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { dir = "~/plugins/tree-sitter-lua" },
   "nvim-treesitter/playground",
   "nvim-treesitter/nvim-treesitter-textobjects",

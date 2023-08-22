@@ -1,8 +1,8 @@
 return {
   {
     "sourcegraph/sg.nvim",
-    dev = true,
+    --dev = true,
     dependencies = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" },
-    build = "cargo build --workspace",
+    --build = "nvim -l build/init.lua",
   },
 }

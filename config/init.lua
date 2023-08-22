@@ -10,7 +10,7 @@ end
 vim.g.mapleader = ","
 vim.g.maplocalleader = " "
 
-
+require "david.disable_builtin"
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -24,6 +24,12 @@ if not vim.loop.fs_stat(lazypath) then
   }
 end
 vim.opt.runtimepath:prepend(lazypath)
+vim.opt.runtimepath:prepend("/home/david-engelmann/.config/nvim")
+
+vim.cmd("highlight Normal guibg=none")
+vim.cmd("highlight NonText guibg=none")
+vim.cmd("highlight Normal ctermbg=none")
+vim.cmd("highlight NonText ctermbg=none")
 
 require("lazy").setup("custom.plugins", {
   dev = {
