@@ -12,6 +12,12 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
 
+RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& sudo apt update \
+&& sudo apt install gh -y
+
 RUN npm i -g n && n stable
 
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
@@ -62,6 +68,9 @@ RUN npm install -g typescript
 RUN npm install -g neovim
 RUN npm install -g @fsouza/prettierd
 RUN npm install -g tree-sitter-cli
+RUN npm install -g pyright
+RUN npm install -g yaml-language-server
+
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
