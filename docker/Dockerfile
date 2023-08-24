@@ -8,7 +8,7 @@ RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractiv
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
     libtree-sitter-dev tmux python3 python3-dev xdg-utils rustc cargo \
     nodejs npm clang mercurial gnupg \
-    golang-go debian-keyring debian-archive-keyring fd-find \
+    golang-go debian-keyring debian-archive-keyring fd-find gh \
     #file less findutils ripgrep fd \
   && apt-get update && apt-get -y upgrade
 
@@ -62,6 +62,7 @@ RUN npm install -g typescript
 RUN npm install -g neovim
 RUN npm install -g @fsouza/prettierd
 RUN npm install -g tree-sitter-cli
+RUN npm install -g pyright
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /

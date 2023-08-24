@@ -84,6 +84,7 @@
         "/home/david-engelmann/.local/share/nvim/lazy/nvim-dap-virtual-text/lua",
         "/home/david-engelmann/.local/share/nvim/lazy/fidget.nvim/lua",
         "/home/david-engelmann/.config/nvim/lua",
+        "/home/david-engelmann/plugins",
         "/home/david-engelmann/.config/nvim",
         "/home/david-engelmann/.config/nvim/lua/david",
         "/home/david-engelmann/.config/nvim/lua/sourcegraph",
