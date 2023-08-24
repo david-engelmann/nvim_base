@@ -69,6 +69,8 @@ RUN npm install -g neovim
 RUN npm install -g @fsouza/prettierd
 RUN npm install -g tree-sitter-cli
 RUN npm install -g pyright
+RUN npm install -g yaml-language-server
+
 
 FROM ubuntu:22.04
 COPY --from=neovim-builder / /
