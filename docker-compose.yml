@@ -49,6 +49,7 @@ services:
                 VIMRUNTIME: "${VIMRUNTIME:-/usr/share/nvim/runtime}"
                 SRC_ACCESS_TOKEN: "${SRC_ACCESS_TOKEN:-my-token}"
                 SRC_ENDPOINT: "${SRC_ENDPOINT:-http://localhost}"
+                VIRTUAL_ENV: "${VIRTUAL_ENV:-/opt/venv}"
 
 volumes:
     sg_data:
