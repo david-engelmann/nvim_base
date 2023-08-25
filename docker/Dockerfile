@@ -2,7 +2,9 @@ FROM ubuntu:22.04 as neovim-builder
 RUN apt-get update && apt-get -y upgrade && export DEBIAN_FRONTEND=noninteractive \
   && apt-get -y install --no-install-recommends \
     #fonts-powerline ninja-build gettext cmake unzip curl libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev libtree-sitter-dev apt-transport-https ca-certificates git \
-    fonts-powerline ninja-build gettext cmake unzip curl fzf ripgrep tree xclip \
+    fonts-powerline ninja-build gettext cmake unzip curl \
+    #fzf \ #gonna install from git script for most up to date version
+    ripgrep tree xclip \
     python3 python3-pip tzdata libtool libtool-bin autoconf automake gcc g++ \
     pkg-config zip unzip apt-transport-https ca-certificates git ssh luarocks \
     build-essential libuv1-dev libtermkey-dev luajit lua-lpeg libmsgpack-dev \
@@ -111,6 +113,9 @@ ENV SRC_ENDPOINT $SRC_ENDPOINT
 # COPY OVER CONFIG
 COPY --chown=$USER --chmod=0644 config* $HOME/.config/nvim/
 COPY --chown=$USER --chmod=0644 . $HOME
+
+RUN git clone --depth 1 https://github.com/mauke/fzf.git $HOME/.fzf \
+    && $HOME/.fzf/install
 
 COPY docker/scripts/julia_install.sh .
 RUN sh julia_install.sh
