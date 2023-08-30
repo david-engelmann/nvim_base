@@ -332,36 +332,52 @@ dap.configurations.go = {
   },
 }
 
+dap.adapters.python = {
+  type = "executable",
+  command = os.getenv("VIRTUAL_ENV") .. "/bin/python3",
+  args = { "-m", "debugpy.adapter" },
+}
+
 dap.configurations.python = {
   {
     type = "python",
     request = "launch",
-    name = "Build api",
-    program = "${file}",
-    args = { "--target", "api" },
+    name = "pytest: current file",
+    args = { "${file}" },
     console = "integratedTerminal",
+    module = "pytest",
+    pythonPath = os.getenv("VIRTUAL_ENV") .. "bin/python3",
   },
   {
     type = "python",
     request = "launch",
-    name = "lsif",
-    program = "src/lsif/__main__.py",
-    args = {},
+    name = "pytest",
     console = "integratedTerminal",
+    module = "pytest",
+    pythonPath = os.getenv("VIRTUAL_ENV") .. "bin/python3",
   },
+  {
+    type = "python",
+    request = "launch",
+    name = "pytest: current folder",
+    args = { vim.fn.getcwd() },
+    console = "integratedTerminal",
+    module = "pytest",
+    pythonPath = os.getenv("VIRTUAL_ENV") .. "bin/python3",
+  }
 }
 
-local dap_python = require "dap-python"
-dap_python.setup("python", {
-  -- So if configured correctly, this will open up new terminal.
-  --    Could probably get this to target a particular terminal
-  --    and/or add a tab to kitty or something like that as well.
-  console = "externalTerminal",
-
-  include_configs = true,
-})
-
-dap_python.test_runner = "pytest"
+--local dap_python = require "dap-python"
+--dap_python.setup("python", {
+--  -- So if configured correctly, this will open up new terminal.
+--  --    Could probably get this to target a particular terminal
+--  --    and/or add a tab to kitty or something like that as well.
+--  console = "externalTerminal",
+--
+--  include_configs = true,
+--})
+--
+--dap_python.test_runner = "pytest"
 
 dap.adapters.lldb = {
   type = "executable",
